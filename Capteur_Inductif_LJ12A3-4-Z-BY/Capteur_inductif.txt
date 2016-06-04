@@ -1,0 +1,45 @@
+Ce kit comprend
+Un capteur inductif
+Une carte d'adaptation pour RAMPS 1.4
+Caractéristiques capteur
+Tension: DC 6-36 V
+Sortie courant: 300mA  
+3 fil  
+Polarité: NPN  
+Dimention: M12x10x55mm  
+Distance de détection: 2mm  
+Ouput statut: normalement ouvert
+
+Caractéristiques carte d'adaptation
+
+Cette carte permet le branchement d'un capteur inductif (ou capacitif) sur la carte Ramps.
+Aucun cablage supplémentaire n'est nécéssaire. Il vous faudra seulement changer les paramètres de votre pins.h dans Marlin (ou autre firmware compatible).
+
+Caractéristiques:
+LED indicatrice (signal binaire inversé vis à vis de la détection du capteur)
+4 connecteurs:
+1 connecteur femelle sur la broche 12V de la carte Ramps
+1 connecteur femelle sur la broche D12 VCC 5V de la carte Ramps
+1 connecteur male pour le capteur inductif
+1 connecteur male pour une sortie 12V (exemple: ventilateur)
+Isolation de la ligne 12V et 5V par optocoupleur
+Dimensions hors connecteurs: 26 x 21mm
+Note: En suivant les entrées / sorties, il est possible de recabler les sorties pour se connecter sur une carte autre que le RAMPS.
+
+Utilisation de la carte: 
+
+Deux possibles configurations s'offrent à vous:
+Téléchargez le firmware pour Prusa i3 Rework 1.5 dans notre dossier de téléchargement (préconfiguré pour le capteur inductif) et modifiez le selon vos souhaits.
+ 
+Utilisez une nouvelle base Marlin:
+Note au préalable: téléchargez le dernier firmware Marlin à l'adresse suivante: https://github.com/MarlinFirmware/Marlin
+Généralement, le palpeur (Zprobe) utilise la broche Zmin de votre carte Ramps. Il vous faudra donc faire 2 manipulations:
+Dans le configuration.h de Marlin: changer la ligne "const bool Z_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+Pour inverser le signal d'entrée logique de votre capteur.
+Dans le pins.h de votre Marlin dans la section carte Ramps (généralement à la ligne 612)  réadressez le pin Zmin à l'entrée D12 en remplacant la ligne suivante:
+ "#define Z_MIN_PIN          12 // replacement du port préconfiguré 18 en 12"
+
+ATTENTION: il est important de bien adresser le port d'utilisation du capteur inductif en "entrée" si vous configurez vous-même votre microcontroleur.
+
+Changelog carte d'adaptation:
+13/10/2015: Rev2, passage à un circuit dédié aux capteurs NPN, ajout d'une LED indicatrice (Signal LED inversé), licence passe en GPL V2. Meilleure attache des prises. Carte plus compacte.
