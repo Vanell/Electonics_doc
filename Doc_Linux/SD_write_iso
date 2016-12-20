@@ -1,0 +1,2 @@
+sudo apt-get install dcfldd
+sudo dcfldd sizeprobe=if statusinterval=5 if=/dev/dvd of=/home/orion79/test.iso
